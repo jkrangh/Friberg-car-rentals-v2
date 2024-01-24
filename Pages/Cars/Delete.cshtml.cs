@@ -7,29 +7,30 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Friberg_car_rentals_v2;
 using Friberg_car_rentals_v2.Models;
+using Friberg_car_rentals_v2.Data;
 
 namespace Friberg_car_rentals_v2.Pages.Cars
 {
     public class DeleteModel : PageModel
-    {
-        private readonly Friberg_car_rentals_v2.ApplicationDbContext _context;
+    {        
+        private readonly ICar carRepo;
 
-        public DeleteModel(Friberg_car_rentals_v2.ApplicationDbContext context)
+        public DeleteModel(ICar carRepo)
         {
-            _context = context;
+            this.carRepo = carRepo;
         }
 
         [BindProperty]
         public Car Car { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var car = await _context.Cars.FirstOrDefaultAsync(m => m.CarId == id);
+            var car = carRepo.GetById(id);
 
             if (car == null)
             {
@@ -42,19 +43,18 @@ namespace Friberg_car_rentals_v2.Pages.Cars
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPostAsync(int id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var car = await _context.Cars.FindAsync(id);
+            var car = carRepo.GetById(id);
             if (car != null)
             {
                 Car = car;
-                _context.Cars.Remove(Car);
-                await _context.SaveChangesAsync();
+                carRepo.Remove(Car);
             }
 
             return RedirectToPage("./Index");
