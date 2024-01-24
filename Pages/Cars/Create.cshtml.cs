@@ -7,16 +7,17 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Friberg_car_rentals_v2;
 using Friberg_car_rentals_v2.Models;
+using Friberg_car_rentals_v2.Data;
 
 namespace Friberg_car_rentals_v2.Pages.Cars
 {
     public class CreateModel : PageModel
     {
-        private readonly Friberg_car_rentals_v2.ApplicationDbContext _context;
+        private readonly ICar carRepo;
 
-        public CreateModel(Friberg_car_rentals_v2.ApplicationDbContext context)
+        public CreateModel(ICar carRepo)
         {
-            _context = context;
+            this.carRepo = carRepo;
         }
 
         public IActionResult OnGet()
@@ -35,8 +36,7 @@ namespace Friberg_car_rentals_v2.Pages.Cars
                 return Page();
             }
 
-            _context.Cars.Add(Car);
-            await _context.SaveChangesAsync();
+            carRepo.Add(Car);
 
             return RedirectToPage("./Index");
         }
