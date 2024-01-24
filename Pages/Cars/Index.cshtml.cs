@@ -23,7 +23,7 @@ namespace Friberg_car_rentals_v2.Pages.Cars
 
         public async Task OnGetAsync()
         {
-            Car = await _context.Car.ToListAsync();
+            Car = await _context.Cars.ToListAsync();
         }
     }
 }

@@ -35,7 +35,7 @@ namespace Friberg_car_rentals_v2.Pages.Customers
                 return Page();
             }
 
-            _context.Customer.Add(Customer);
+            _context.Customers.Add(Customer);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

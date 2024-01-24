@@ -29,7 +29,7 @@ namespace Friberg_car_rentals_v2.Pages.Cars
                 return NotFound();
             }
 
-            var car = await _context.Car.FirstOrDefaultAsync(m => m.CarId == id);
+            var car = await _context.Cars.FirstOrDefaultAsync(m => m.CarId == id);
 
             if (car == null)
             {
@@ -49,11 +49,11 @@ namespace Friberg_car_rentals_v2.Pages.Cars
                 return NotFound();
             }
 
-            var car = await _context.Car.FindAsync(id);
+            var car = await _context.Cars.FindAsync(id);
             if (car != null)
             {
                 Car = car;
-                _context.Car.Remove(Car);
+                _context.Cars.Remove(Car);
                 await _context.SaveChangesAsync();
             }
 

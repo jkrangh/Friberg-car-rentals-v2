@@ -14,7 +14,7 @@ namespace Friberg_car_rentals_v2
         {
         }
 
-        public DbSet<Friberg_car_rentals_v2.Models.Car> Car { get; set; } = default!;
-        public DbSet<Friberg_car_rentals_v2.Models.Customer> Customer { get; set; } = default!;
+        public DbSet<Friberg_car_rentals_v2.Models.Car> Cars { get; set; } = default!;
+        public DbSet<Friberg_car_rentals_v2.Models.Customer> Customers { get; set; } = default!;
     }
 }

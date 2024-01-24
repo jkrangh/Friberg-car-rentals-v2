@@ -30,7 +30,7 @@ namespace Friberg_car_rentals_v2.Pages.Customers
                 return NotFound();
             }
 
-            var customer =  await _context.Customer.FirstOrDefaultAsync(m => m.CustomerId == id);
+            var customer =  await _context.Customers.FirstOrDefaultAsync(m => m.CustomerId == id);
             if (customer == null)
             {
                 return NotFound();
@@ -71,7 +71,7 @@ namespace Friberg_car_rentals_v2.Pages.Customers
 
         private bool CustomerExists(int id)
         {
-            return _context.Customer.Any(e => e.CustomerId == id);
+            return _context.Customers.Any(e => e.CustomerId == id);
         }
     }
 }
