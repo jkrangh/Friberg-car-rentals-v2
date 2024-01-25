@@ -8,29 +8,30 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Friberg_car_rentals_v2;
 using Friberg_car_rentals_v2.Models;
+using Friberg_car_rentals_v2.Data;
 
 namespace Friberg_car_rentals_v2.Pages.Customers
 {
     public class EditModel : PageModel
     {
-        private readonly Friberg_car_rentals_v2.ApplicationDbContext _context;
+        private readonly ICustomer customerRepo;
 
-        public EditModel(Friberg_car_rentals_v2.ApplicationDbContext context)
+        public EditModel(ICustomer customerRepo)
         {
-            _context = context;
+            this.customerRepo = customerRepo;
         }
 
         [BindProperty]
         public Customer Customer { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public IActionResult OnGet(int id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var customer =  await _context.Customers.FirstOrDefaultAsync(m => m.CustomerId == id);
+            var customer =  customerRepo.GetById(id);
             if (customer == null)
             {
                 return NotFound();
@@ -41,37 +42,25 @@ namespace Friberg_car_rentals_v2.Pages.Customers
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
+        public IActionResult OnPost()
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return Page();
-            }
-
-            _context.Attach(Customer).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CustomerExists(Customer.CustomerId))
+                try
                 {
-                    return NotFound();
+                    customerRepo.Update(Customer);
                 }
-                else
+                catch (Exception ex)
                 {
-                    throw;
+                    return Page();                    
                 }
             }
-
             return RedirectToPage("./Index");
         }
 
-        private bool CustomerExists(int id)
-        {
-            return _context.Customers.Any(e => e.CustomerId == id);
-        }
+        //private bool CustomerExists(int id)
+        //{
+        //    return _context.Customers.Any(e => e.CustomerId == id);
+        //}
     }
 }

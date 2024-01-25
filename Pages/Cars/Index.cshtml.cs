@@ -22,7 +22,7 @@ namespace Friberg_car_rentals_v2.Pages.Cars
 
         public IList<Car> Car { get;set; } = default!;
 
-        public async Task OnGetAsync()
+        public void OnGet()
         {
             Car = carRepo.GetAll().ToList();
         }

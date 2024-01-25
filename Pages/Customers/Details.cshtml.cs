@@ -7,28 +7,29 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Friberg_car_rentals_v2;
 using Friberg_car_rentals_v2.Models;
+using Friberg_car_rentals_v2.Data;
 
 namespace Friberg_car_rentals_v2.Pages.Customers
 {
     public class DetailsModel : PageModel
     {
-        private readonly Friberg_car_rentals_v2.ApplicationDbContext _context;
+        private readonly ICustomer customerRepo;
 
-        public DetailsModel(Friberg_car_rentals_v2.ApplicationDbContext context)
+        public DetailsModel(ICustomer customerRepo)
         {
-            _context = context;
+            this.customerRepo = customerRepo;
         }
 
         public Customer Customer { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public IActionResult OnGet(int id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var customer = await _context.Customers.FirstOrDefaultAsync(m => m.CustomerId == id);
+            var customer = customerRepo.GetById(id);
             if (customer == null)
             {
                 return NotFound();

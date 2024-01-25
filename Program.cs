@@ -13,6 +13,7 @@ namespace Friberg_car_rentals_v2
                 options.UseSqlServer(builder.Configuration.GetConnectionString("ApplicationDbContext") ?? throw new InvalidOperationException("Connection string 'ApplicationDbContext' not found.")));
 
             builder.Services.AddTransient<ICar, CarRepository>();
+            builder.Services.AddTransient<ICustomer, CustomerRepository>();
             // Add services to the container.
             builder.Services.AddRazorPages();
 

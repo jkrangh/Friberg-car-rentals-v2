@@ -14,6 +14,7 @@ namespace Friberg_car_rentals_v2.Data
         public Customer Add(Customer cust)
         {
             applicationDbContext.Add(cust);
+            applicationDbContext.SaveChanges();
             return cust;
         }
 
@@ -31,6 +32,7 @@ namespace Friberg_car_rentals_v2.Data
         public void Remove(Customer cust)
         {
             applicationDbContext.Remove(cust);
+            applicationDbContext.SaveChanges();
         }
 
         public void SaveChanges()
@@ -41,6 +43,7 @@ namespace Friberg_car_rentals_v2.Data
         public Customer Update(Customer cust)
         {
             applicationDbContext.Update(cust);
+            applicationDbContext.SaveChanges();
             return cust;
         }
     }

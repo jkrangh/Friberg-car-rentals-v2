@@ -7,16 +7,17 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Friberg_car_rentals_v2;
 using Friberg_car_rentals_v2.Models;
+using Friberg_car_rentals_v2.Data;
 
 namespace Friberg_car_rentals_v2.Pages.Customers
 {
     public class CreateModel : PageModel
     {
-        private readonly Friberg_car_rentals_v2.ApplicationDbContext _context;
+        private readonly ICustomer customerRepo;
 
-        public CreateModel(Friberg_car_rentals_v2.ApplicationDbContext context)
+        public CreateModel(ICustomer customerRepo)
         {
-            _context = context;
+            this.customerRepo = customerRepo;
         }
 
         public IActionResult OnGet()
@@ -28,15 +29,14 @@ namespace Friberg_car_rentals_v2.Pages.Customers
         public Customer Customer { get; set; } = default!;
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public async Task<IActionResult> OnPostAsync()
+        public IActionResult OnPost()
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.Customers.Add(Customer);
-            await _context.SaveChangesAsync();
+            customerRepo.Add(Customer);
 
             return RedirectToPage("./Index");
         }
