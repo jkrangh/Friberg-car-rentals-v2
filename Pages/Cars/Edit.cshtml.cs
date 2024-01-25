@@ -8,29 +8,30 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Friberg_car_rentals_v2;
 using Friberg_car_rentals_v2.Models;
+using Friberg_car_rentals_v2.Data;
 
 namespace Friberg_car_rentals_v2.Pages.Cars
 {
     public class EditModel : PageModel
     {
-        private readonly Friberg_car_rentals_v2.ApplicationDbContext _context;
+        private readonly ICar carRepo;
 
-        public EditModel(Friberg_car_rentals_v2.ApplicationDbContext context)
+        public EditModel(ICar carRepo)
         {
-            _context = context;
+            this.carRepo = carRepo;
         }
 
         [BindProperty]
         public Car Car { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var car =  await _context.Cars.FirstOrDefaultAsync(m => m.CarId == id);
+            var car =  carRepo.GetById(id);
             if (car == null)
             {
                 return NotFound();
@@ -43,35 +44,25 @@ namespace Friberg_car_rentals_v2.Pages.Cars
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return Page();
-            }
-
-            _context.Attach(Car).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CarExists(Car.CarId))
+                try
                 {
-                    return NotFound();
+                    carRepo.Update(Car);
                 }
-                else
+                catch (Exception ex)
                 {
-                    throw;
+                    return Page();
                 }
             }
+            
 
             return RedirectToPage("./Index");
         }
 
-        private bool CarExists(int id)
-        {
-            return _context.Cars.Any(e => e.CarId == id);
-        }
+        //private bool CarExists(int id)
+        //{
+        //    return _context.Cars.Any(e => e.CarId == id);
+        //}
     }
 }
