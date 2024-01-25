@@ -23,7 +23,7 @@ namespace Friberg_car_rentals_v2.Pages.Cars
         [BindProperty]
         public Car Car { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int id)
+        public IActionResult OnGet(int id)
         {
             if (id == null)
             {
@@ -43,7 +43,7 @@ namespace Friberg_car_rentals_v2.Pages.Cars
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int id)
+        public IActionResult OnPost(int id)
         {
             if (id == null)
             {

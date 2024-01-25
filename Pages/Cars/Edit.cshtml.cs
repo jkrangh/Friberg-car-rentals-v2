@@ -24,14 +24,14 @@ namespace Friberg_car_rentals_v2.Pages.Cars
         [BindProperty]
         public Car Car { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int id)
+        public IActionResult OnGet(int id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var car =  carRepo.GetById(id);
+            var car = carRepo.GetById(id);
             if (car == null)
             {
                 return NotFound();
@@ -42,7 +42,7 @@ namespace Friberg_car_rentals_v2.Pages.Cars
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
+        public IActionResult OnPost()
         {
             if (ModelState.IsValid)
             {
@@ -55,8 +55,6 @@ namespace Friberg_car_rentals_v2.Pages.Cars
                     return Page();
                 }
             }
-            
-
             return RedirectToPage("./Index");
         }
 

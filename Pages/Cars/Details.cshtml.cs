@@ -22,7 +22,7 @@ namespace Friberg_car_rentals_v2.Pages.Cars
 
         public Car Car { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int id)
+        public IActionResult OnGet(int id)
         {
             if (id == null)
             {
