@@ -15,6 +15,14 @@ namespace Friberg_car_rentals_v2
             builder.Services.AddTransient<ICar, CarRepository>();
             builder.Services.AddTransient<ICustomer, CustomerRepository>();
             // Add services to the container.
+            builder.Services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var supportedCultures = new[] { "sv-se", "sv" };
+                options.SetDefaultCulture(supportedCultures[0])
+                    .AddSupportedCultures(supportedCultures)
+                    .AddSupportedUICultures(supportedCultures);
+            });
+
             builder.Services.AddRazorPages();
 
             var app = builder.Build();

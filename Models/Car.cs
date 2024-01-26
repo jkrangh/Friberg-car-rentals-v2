@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Friberg_car_rentals_v2.Models
 {
@@ -9,6 +10,7 @@ namespace Friberg_car_rentals_v2.Models
         public string CarMake { get; set; }
         [Required]
         public string CarModel { get; set; }
+        [Range(1886, 2024)]
         public int CarYear { get; set; }
         public decimal RentalPrice { get; set; }
         public string? Color { get; set; } = "";
