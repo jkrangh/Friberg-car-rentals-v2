@@ -20,19 +20,19 @@ namespace Friberg_car_rentals_v2.Data
 
         public IEnumerable<Customer> GetAll()
         {
-            return applicationDbContext.Customers.OrderBy(x => x.CustomerLastName);
+            return applicationDbContext.Customers.OrderBy(x => x.LastName);
         }
 
         public Customer GetByEmail(string email)
         {
             return applicationDbContext.Customers
-                .FirstOrDefault(x => x.CustomerEmail == email);
+                .FirstOrDefault(x => x.Email == email);
         }
 
         public Customer GetById(int id)
         {
             return applicationDbContext.Customers
-                .FirstOrDefault(x => x.CustomerId == id);
+                .FirstOrDefault(x => x.Id == id);
         }
 
         public void Remove(Customer cust)

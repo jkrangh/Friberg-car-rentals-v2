@@ -5,7 +5,7 @@
 namespace Friberg_car_rentals_v2.Migrations
 {
     /// <inheritdoc />
-    public partial class adminclassandmoreprops : Migration
+    public partial class carimgurlIsNullable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -14,16 +14,16 @@ namespace Friberg_car_rentals_v2.Migrations
                 name: "Admins",
                 columns: table => new
                 {
-                    AdminId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AdminFirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AdminLastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AdminEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AdminPassword = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Admins", x => x.AdminId);
+                    table.PrimaryKey("PK_Admins", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -39,7 +39,7 @@ namespace Friberg_car_rentals_v2.Migrations
                     Color = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CurrentlyAvailable = table.Column<bool>(type: "bit", nullable: false),
-                    CarImageURL = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    CarImageURL = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -50,16 +50,16 @@ namespace Friberg_car_rentals_v2.Migrations
                 name: "Customers",
                 columns: table => new
                 {
-                    CustomerId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CustomerFirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CustomerLastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CustomerEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CustomerPassword = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Customers", x => x.CustomerId);
+                    table.PrimaryKey("PK_Customers", x => x.Id);
                 });
         }
 

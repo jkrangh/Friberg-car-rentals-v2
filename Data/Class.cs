@@ -19,19 +19,19 @@ namespace Friberg_car_rentals_v2.Data
 
         public IEnumerable<Admin> GetAll()
         {
-            return applicationDbContext.Admins.OrderBy(x => x.AdminId);
+            return applicationDbContext.Admins.OrderBy(x => x.Id);
         }
 
         public Admin GetByEmail(string email)
         {
             return applicationDbContext.Admins
-                .FirstOrDefault(x => x.AdminEmail == email);
+                .FirstOrDefault(x => x.Email == email);
         }
 
         public Admin GetById(int id)
         {
             return applicationDbContext.Admins
-                .FirstOrDefault(x => x.AdminId == id);
+                .FirstOrDefault(x => x.Id == id);
         }
 
         public void Remove(Admin admin)
