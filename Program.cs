@@ -15,6 +15,16 @@ namespace Friberg_car_rentals_v2
             builder.Services.AddTransient<ICar, CarRepository>();
             builder.Services.AddTransient<ICustomer, CustomerRepository>();
             builder.Services.AddTransient<IAdmin, AdminRepository>();
+
+            builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); //Fredriks
+            
+            //builder.Services.AddSession(options => //Session?
+            //{
+            //    options.IdleTimeout = TimeSpan.FromMinutes(30);
+            //    options.Cookie.HttpOnly = true;
+            //    options.Cookie.IsEssential = true;
+            //});
+
             // Add services to the container.
             builder.Services.Configure<RequestLocalizationOptions>(options =>
             {
@@ -35,7 +45,7 @@ namespace Friberg_car_rentals_v2
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            //app.UseSession(); //Sessions
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
