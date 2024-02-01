@@ -14,6 +14,7 @@ namespace Friberg_car_rentals_v2
 
             builder.Services.AddTransient<ICar, CarRepository>();
             builder.Services.AddTransient<ICustomer, CustomerRepository>();
+            builder.Services.AddTransient<IAdmin, AdminRepository>();
             // Add services to the container.
             builder.Services.Configure<RequestLocalizationOptions>(options =>
             {

@@ -10,5 +10,6 @@ namespace Friberg_car_rentals_v2.Data
         void SaveChanges();
         Customer Update(Customer cust);
         void Remove(Customer cust);
+        Customer GetByEmail(string email);
     }
 }
