@@ -24,6 +24,7 @@ namespace Friberg_car_rentals_v2.Pages.Cars
 
         public void OnGet()
         {
+            ViewData["CurrentUserName"] = Request.Cookies["CurrentUserName"];
             Car = carRepo.GetAll().ToList();
         }
     }
