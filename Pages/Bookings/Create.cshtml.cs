@@ -21,6 +21,7 @@ namespace Friberg_car_rentals_v2.Pages.Bookings
 
         public IActionResult OnGet()
         {
+            ViewData["CurrentUserId"] = Request.Cookies["CurrentUserId"];
             return Page();
         }
 
