@@ -43,7 +43,7 @@ namespace Friberg_car_rentals_v2.Pages.Login
             {
                 CookieOptions options = new CookieOptions(); //Fredriks
                 options.Expires = DateTimeOffset.UtcNow.AddMinutes(30);
-                Response.Cookies.Append("CurrentUserName", $"Välkommen, {user.FirstName} {user.LastName}", options);
+                Response.Cookies.Append("CurrentUserName", $"{user.FirstName} {user.LastName}", options);
                 Response.Cookies.Append("CurrentUserId", user.Id.ToString(), options); //Saves the Costumer.Id as a cookie.
                 return RedirectToPage("/Cars/Index");
             }
