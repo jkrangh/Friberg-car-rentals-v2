@@ -8,29 +8,30 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Friberg_car_rentals_v2;
 using Friberg_car_rentals_v2.Models;
+using Friberg_car_rentals_v2.Data;
 
 namespace Friberg_car_rentals_v2.Pages.Bookings
 {
     public class EditModel : PageModel
     {
-        private readonly Friberg_car_rentals_v2.ApplicationDbContext _context;
+        private readonly IBooking bookingRepo;
 
-        public EditModel(Friberg_car_rentals_v2.ApplicationDbContext context)
+        public EditModel(IBooking bookingRepo)
         {
-            _context = context;
+            this.bookingRepo = bookingRepo;
         }
 
         [BindProperty]
         public Booking Booking { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public IActionResult OnGet(int id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var booking =  await _context.Bookings.FirstOrDefaultAsync(m => m.BookingId == id);
+            var booking = bookingRepo.GetById(id);
             if (booking == null)
             {
                 return NotFound();
@@ -41,37 +42,25 @@ namespace Friberg_car_rentals_v2.Pages.Bookings
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
+        public IActionResult OnPost()
         {
             if (!ModelState.IsValid)
             {
-                return Page();
-            }
-
-            _context.Attach(Booking).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!BookingExists(Booking.BookingId))
+                try
                 {
-                    return NotFound();
+                    bookingRepo.Update(Booking);
                 }
-                else
+                catch (Exception ex)
                 {
-                    throw;
+                    return Page();
                 }
-            }
-
+            }           
             return RedirectToPage("./Index");
         }
 
-        private bool BookingExists(int id)
-        {
-            return _context.Bookings.Any(e => e.BookingId == id);
-        }
+        //private bool BookingExists(int id)
+        //{
+        //    return _context.Bookings.Any(e => e.BookingId == id);
+        //}
     }
 }

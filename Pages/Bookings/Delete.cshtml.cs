@@ -7,29 +7,30 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Friberg_car_rentals_v2;
 using Friberg_car_rentals_v2.Models;
+using Friberg_car_rentals_v2.Data;
 
 namespace Friberg_car_rentals_v2.Pages.Bookings
 {
     public class DeleteModel : PageModel
     {
-        private readonly Friberg_car_rentals_v2.ApplicationDbContext _context;
+        private readonly IBooking bookingRepo;
 
-        public DeleteModel(Friberg_car_rentals_v2.ApplicationDbContext context)
+        public DeleteModel(IBooking bookingRepo)
         {
-            _context = context;
+            this.bookingRepo = bookingRepo;
         }
 
         [BindProperty]
         public Booking Booking { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public IActionResult OnGet(int id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var booking = await _context.Bookings.FirstOrDefaultAsync(m => m.BookingId == id);
+            var booking = bookingRepo.GetById(id);
 
             if (booking == null)
             {
@@ -42,19 +43,18 @@ namespace Friberg_car_rentals_v2.Pages.Bookings
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public IActionResult OnPost(int id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var booking = await _context.Bookings.FindAsync(id);
+            var booking = bookingRepo.GetById(id);
             if (booking != null)
             {
                 Booking = booking;
-                _context.Bookings.Remove(Booking);
-                await _context.SaveChangesAsync();
+                bookingRepo.Remove(Booking);
             }
 
             return RedirectToPage("./Index");
