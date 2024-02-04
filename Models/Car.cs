@@ -18,5 +18,6 @@ namespace Friberg_car_rentals_v2.Models
         public string? Description { get; set; } = "";
         public bool CurrentlyAvailable { get; set; }
         public string? CarImageURL { get; set; } = "~friberg_logo.png";
+        public virtual List<Booking> Bookings { get; set; }
     }
 }

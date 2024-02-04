@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Friberg_car_rentals_v2;
 using Friberg_car_rentals_v2.Models;
 using Friberg_car_rentals_v2.Data;
+using System.Text.Encodings.Web;
 
 namespace Friberg_car_rentals_v2.Pages.Bookings
 {
@@ -20,9 +21,19 @@ namespace Friberg_car_rentals_v2.Pages.Bookings
             this.bookingRepo = bookingRepo;
         }
 
-        public IActionResult OnGet()
+        public IActionResult OnGet(int carId)
         {
             ViewData["CurrentUserId"] = Request.Cookies["CurrentUserId"];
+            ViewData["CurrentUserName"] = Request.Cookies["CurrentUserName"];
+
+            Booking = new Booking
+            {
+                CarId = carId,
+                CustomerId = Int32.Parse((string)ViewData["CurrentUserId"]),
+                RentalStart = DateTime.Now,
+                RentalEnd = DateTime.Now.AddDays(1)         
+            };
+            
             return Page();
         }
 

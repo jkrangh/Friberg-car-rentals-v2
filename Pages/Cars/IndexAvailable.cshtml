@@ -1,0 +1,66 @@
+﻿@page
+@model Friberg_car_rentals_v2.Pages.Cars.IndexAvailableModel
+@{
+    ViewData["Title"] = "IndexAvailable";
+}
+
+<h1>Index</h1>
+<p>
+    Välkommen @ViewData["CurrentUserName"]
+</p>
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Car[0].CarMake)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car[0].CarModel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car[0].CarYear)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car[0].RentalPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car[0].Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car[0].Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Car)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CarMake)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CarModel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CarYear)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RentalPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>                    
+                    <a asp-page="/Bookings/Create" asp-route-CarId="@item.CarId">Boka</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

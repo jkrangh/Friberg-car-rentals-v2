@@ -19,9 +19,9 @@
                 <input type="hidden" asp-for="Booking.CustomerId"value="@ViewData["CurrentUserId"]"/> <!--Cookie from login used as preset-->
             </div>
             <div class="form-group">
-                <label asp-for="Booking.CarId" class="control-label"></label>
-                <input asp-for="Booking.CarId" class="form-control" />
-                <span asp-validation-for="Booking.CarId" class="text-danger"></span>
+                @* <label asp-for="Booking.CarId" class="control-label"></label> *@
+                <input type="hidden" asp-for="Booking.CarId" class="form-control" />
+                @* <span asp-validation-for="Booking.CarId" class="text-danger"></span> *@
             </div>
             <div class="form-group">
                 <label asp-for="Booking.RentalStart" class="control-label"></label>

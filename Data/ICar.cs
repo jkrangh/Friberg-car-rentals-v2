@@ -6,6 +6,7 @@ namespace Friberg_car_rentals_v2.Data
     {
         Car GetById(int id);
         IEnumerable<Car> GetAll();
+        IEnumerable<Car> GetAllAvailable();
         Car Add(Car car);
         void SaveChanges();
         Car Update(Car car);

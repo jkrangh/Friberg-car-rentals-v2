@@ -21,6 +21,11 @@ namespace Friberg_car_rentals_v2.Data
         {
             return applicationDbContext.Cars.OrderBy(c => c.CarMake);
         }
+        public IEnumerable<Car> GetAllAvailable()
+        {
+            return applicationDbContext.Cars
+                .Where(x => x.CurrentlyAvailable == true).OrderBy(c => c.CarMake);
+        }
 
         public Car GetById(int id)
         {
@@ -45,5 +50,6 @@ namespace Friberg_car_rentals_v2.Data
             applicationDbContext.SaveChanges();
             return (car);
         }
+
     }
 }

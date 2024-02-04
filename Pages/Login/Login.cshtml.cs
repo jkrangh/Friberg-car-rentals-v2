@@ -31,7 +31,7 @@ namespace Friberg_car_rentals_v2.Pages.Login
                 
                 if (adminUser != null && adminUser.Password == password)
                 {
-                    CookieOptions options = new CookieOptions(); //Fredriks
+                    CookieOptions options = new CookieOptions();
                     options.Expires = DateTimeOffset.UtcNow.AddMinutes(30);
                     
                     Response.Cookies.Append("CurrentUserName", $"Du är inloggad som {adminUser.FirstName} {adminUser.LastName}", options);
@@ -41,11 +41,11 @@ namespace Friberg_car_rentals_v2.Pages.Login
 
             if (user != null && user.Password == password)
             {
-                CookieOptions options = new CookieOptions(); //Fredriks
+                CookieOptions options = new CookieOptions();
                 options.Expires = DateTimeOffset.UtcNow.AddMinutes(30);
                 Response.Cookies.Append("CurrentUserName", $"{user.FirstName} {user.LastName}", options);
                 Response.Cookies.Append("CurrentUserId", user.Id.ToString(), options); //Saves the Costumer.Id as a cookie.
-                return RedirectToPage("/Cars/Index");
+                return RedirectToPage("/Cars/IndexAvailable");
             }
             return Page();
         }
