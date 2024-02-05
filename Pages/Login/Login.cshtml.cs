@@ -32,9 +32,9 @@ namespace Friberg_car_rentals_v2.Pages.Login
                 if (adminUser != null && adminUser.Password == password)
                 {
                     CookieOptions options = new CookieOptions();
-                    options.Expires = DateTimeOffset.UtcNow.AddMinutes(30);
+                    options.Expires = DateTimeOffset.UtcNow.AddHours(1);
+                    Response.Cookies.Append("CurrentAdmin", $"{adminUser.FirstName} {adminUser.LastName}", options);
                     
-                    Response.Cookies.Append("CurrentUserName", $"Du är inloggad som {adminUser.FirstName} {adminUser.LastName}", options);
                     return RedirectToPage("/Index");
                 }
             }
@@ -42,9 +42,11 @@ namespace Friberg_car_rentals_v2.Pages.Login
             if (user != null && user.Password == password)
             {
                 CookieOptions options = new CookieOptions();
-                options.Expires = DateTimeOffset.UtcNow.AddMinutes(30);
+                options.Expires = DateTimeOffset.UtcNow.AddHours(1);
                 Response.Cookies.Append("CurrentUserName", $"{user.FirstName} {user.LastName}", options);
-                Response.Cookies.Append("CurrentUserId", user.Id.ToString(), options); //Saves the Costumer.Id as a cookie.
+                Response.Cookies.Append("CurrentUserId", user.Id.ToString(), options);
+                //HttpContext.Session.SetString("CurrentUserName", $"{user.FirstName} {user.LastName}"); //Saves the CustomerName and Costumer.Id as cookies.
+                //HttpContext.Session.SetInt32("CurrentUserId", user.Id);
                 return RedirectToPage("/Cars/IndexAvailable");
             }
             return Page();

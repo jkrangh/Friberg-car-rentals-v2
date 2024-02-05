@@ -1,0 +1,29 @@
+﻿@page
+@model Friberg_car_rentals_v2.Pages.AdminIndexModel
+@{
+    ViewData["Title"] = "AdminControls";
+}
+
+<header>
+    <ul>
+        <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-page="/Cars/Index">Cars</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-page="/Customers/Index">Customers</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-page="/Bookings/Index">Bokningar</a>
+        </li>        
+    </ul>
+</header>
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>
+        @ViewData["CurrentUserName"]
+    </p>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>

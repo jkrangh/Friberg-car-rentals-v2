@@ -50,7 +50,7 @@ namespace Friberg_car_rentals_v2.Pages.Bookings
 
             bookingRepo.Add(Booking);
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./ListCustomerBookings");
         }
     }
 }
