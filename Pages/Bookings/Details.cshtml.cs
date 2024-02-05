@@ -14,13 +14,16 @@ namespace Friberg_car_rentals_v2.Pages.Bookings
     public class DetailsModel : PageModel
     {
         private readonly IBooking bookingRepo;
+        private readonly ICar carRepo;
 
-        public DetailsModel(IBooking bookingRepo)
+        public DetailsModel(IBooking bookingRepo, ICar carRepo)
         {
             this.bookingRepo = bookingRepo;
+            this.carRepo = carRepo;
         }
 
         public Booking Booking { get; set; } = default!;
+        public Car Car { get; set; }
 
         public IActionResult OnGet(int id)
         {
@@ -37,6 +40,7 @@ namespace Friberg_car_rentals_v2.Pages.Bookings
             else
             {
                 Booking = booking;
+                Car = carRepo.GetById(booking.CarId);
             }
             return Page();
         }
