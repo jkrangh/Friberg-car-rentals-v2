@@ -9,7 +9,7 @@ namespace Friberg_car_rentals_v2.Pages.Login
         public void OnGet()
         {
             ViewData["CurrentUserName"] = Request.Cookies["CurrentUserName"];
-            //ViewData["CurrentUserId"] = Request.Cookies["CurrentUserId"];
+            ViewData["CurrentUserId"] = Request.Cookies["CurrentUserId"];
             ViewData["CurrentAdmin"] = Request.Cookies["CurrentAdmin"];
         }
 

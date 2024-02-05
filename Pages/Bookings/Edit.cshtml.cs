@@ -26,6 +26,8 @@ namespace Friberg_car_rentals_v2.Pages.Bookings
 
         public IActionResult OnGet(int id)
         {
+            ViewData["CurrentAdmin"] = Request.Cookies["CurrentAdmin"];
+            ViewData["CurrentUserId"] = Request.Cookies["CurrentUserId"];
             if (id == null)
             {
                 return NotFound();

@@ -47,7 +47,7 @@ namespace Friberg_car_rentals_v2.Pages.Login
                 Response.Cookies.Append("CurrentUserId", user.Id.ToString(), options);
                 //HttpContext.Session.SetString("CurrentUserName", $"{user.FirstName} {user.LastName}"); //Saves the CustomerName and Costumer.Id as cookies.
                 //HttpContext.Session.SetInt32("CurrentUserId", user.Id);
-                return RedirectToPage("/Cars/IndexAvailable");
+                return RedirectToPage("/Index");
             }
             return Page();
         }

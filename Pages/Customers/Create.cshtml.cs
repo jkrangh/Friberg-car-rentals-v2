@@ -37,8 +37,12 @@ namespace Friberg_car_rentals_v2.Pages.Customers
             }
 
             customerRepo.Add(Customer);
-
-            return RedirectToPage("./Index");
+            CookieOptions options = new CookieOptions();
+            options.Expires = DateTimeOffset.UtcNow.AddHours(1);
+            Response.Cookies.Append("CurrentUserName", $"{Customer.FirstName} {Customer.LastName}", options);
+            Response.Cookies.Append("CurrentUserId", Customer.Id.ToString(), options);
+            
+            return RedirectToPage("/Index");
         }
     }
 }
