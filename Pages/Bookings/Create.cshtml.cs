@@ -26,6 +26,11 @@ namespace Friberg_car_rentals_v2.Pages.Bookings
             ViewData["CurrentUserId"] = Request.Cookies["CurrentUserId"];
             ViewData["CurrentUserName"] = Request.Cookies["CurrentUserName"];
             ViewData["CurrentAdmin"] = Request.Cookies["CurrentAdmin"];
+
+            if (ViewData["CurrentUserId"] == null && ViewData["CurrentAdmin"] == null) //If no user has logged in, create booking is redirected to login-page
+            {
+                return RedirectToPage("/Login/Login");
+            }
             Booking = new Booking
             {
                 CarId = carId,

@@ -49,10 +49,20 @@
         </dd>              
     </dl>
 </div>
+@if(Model.Car.CarImageURL != null)
+{
 <div class="image-container">
     <img src="@Model.Car.CarImageURL" alt="Bild på bilen" style="object-fit: contain" />
-</div>
+</div>    
+}
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Car.CarId">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    @if (ViewData["CurrentAdmin"] != null)
+    {
+        <a asp-page="./Edit" asp-route-id="@Model.Car.CarId">Edit |</a> 
+        <a asp-page="./Index">Back to List</a>        
+    }
+    @if (ViewData["CurrentAdmin"] == null)
+    {
+        <a asp-page="./IndexAvailable">Tillbaka</a>
+    }
 </div>

@@ -41,7 +41,11 @@
 <div>
     @if (ViewData["CurrentAdmin"] != null)
     {
-        <a asp-page="Index">Back to List</a>
+        <a asp-page="Index">Tillbaka</a>
+    }
+    @if (ViewData["CurrentAdmin"] == null)
+    {
+        <a asp-page="/Cars/IndexAvailable">Tillbaka</a>
     }
 </div>
 

@@ -26,6 +26,8 @@ namespace Friberg_car_rentals_v2.Pages.Customers
 
         public IActionResult OnGet(int id)
         {
+            ViewData["CurrentAdmin"] = Request.Cookies["CurrentAdmin"];
+            ViewData["CurrentUserId"] = Request.Cookies["CurrentUserId"];
             if (id == null)
             {
                 return NotFound();
@@ -55,7 +57,11 @@ namespace Friberg_car_rentals_v2.Pages.Customers
                     return Page();                    
                 }
             }
-            return RedirectToPage("./Index");
+            if (ViewData["CurrentAdmin"] != null)
+            {
+                return RedirectToPage("./Index");
+            }
+            else { return RedirectToPage("/Index"); }
         }
 
         //private bool CustomerExists(int id)
