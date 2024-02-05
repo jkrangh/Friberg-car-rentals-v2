@@ -25,7 +25,7 @@ namespace Friberg_car_rentals_v2.Pages.Bookings
         {
             ViewData["CurrentUserId"] = Request.Cookies["CurrentUserId"];
             ViewData["CurrentUserName"] = Request.Cookies["CurrentUserName"];
-
+            ViewData["CurrentAdmin"] = Request.Cookies["CurrentAdmin"];
             Booking = new Booking
             {
                 CarId = carId,

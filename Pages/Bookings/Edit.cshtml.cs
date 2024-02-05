@@ -46,7 +46,7 @@ namespace Friberg_car_rentals_v2.Pages.Bookings
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public IActionResult OnPost()
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 try
                 {
@@ -56,8 +56,12 @@ namespace Friberg_car_rentals_v2.Pages.Bookings
                 {
                     return Page();
                 }
-            }           
-            return RedirectToPage("./Index");
+            }
+            if (ViewData["CurrentAdmin"] != null)
+            {
+                return RedirectToPage("./Index");
+            }
+            else { return RedirectToPage("./ListCustomerBookings"); }
         }
 
         //private bool BookingExists(int id)

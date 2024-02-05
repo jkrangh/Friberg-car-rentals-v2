@@ -8,9 +8,7 @@
 <p>
     Välkommen @ViewData["CurrentUserName"]
 </p>
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -57,7 +55,8 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
-                <td>                    
+                <td>
+                    <a asp-page="/Cars/Details" asp-route-Id="@item.CarId">Visa</a> |
                     <a asp-page="/Bookings/Create" asp-route-CarId="@item.CarId">Boka</a>
                 </td>
             </tr>

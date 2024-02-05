@@ -18,10 +18,8 @@
             <div class="form-group">
                 <input type="hidden" asp-for="Booking.CustomerId"value="@ViewData["CurrentUserId"]"/> <!--Cookie from login used as preset-->
             </div>
-            <div class="form-group">
-                @* <label asp-for="Booking.CarId" class="control-label"></label> *@
+            <div class="form-group">                
                 <input type="hidden" asp-for="Booking.CarId" class="form-control" />
-                @* <span asp-validation-for="Booking.CarId" class="text-danger"></span> *@
             </div>
             <div class="form-group">
                 <label asp-for="Booking.RentalStart" class="control-label"></label>
@@ -41,7 +39,10 @@
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    @if (ViewData["CurrentAdmin"] != null)
+    {
+        <a asp-page="Index">Back to List</a>
+    }
 </div>
 
 @section Scripts {

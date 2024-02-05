@@ -25,6 +25,8 @@ namespace Friberg_car_rentals_v2.Pages.Bookings
 
         public IActionResult OnGet(int id)
         {
+            ViewData["CurrentAdmin"] = Request.Cookies["CurrentAdmin"];
+            ViewData["CurrentUserId"] = Request.Cookies["CurrentUserId"];
             if (id == null)
             {
                 return NotFound();
@@ -45,6 +47,8 @@ namespace Friberg_car_rentals_v2.Pages.Bookings
 
         public IActionResult OnPost(int id)
         {
+            ViewData["CurrentAdmin"] = Request.Cookies["CurrentAdmin"];
+            //ViewData["CurrentUserId"] = Request.Cookies["CurrentUserId"];
             if (id == null)
             {
                 return NotFound();
@@ -56,8 +60,11 @@ namespace Friberg_car_rentals_v2.Pages.Bookings
                 Booking = booking;
                 bookingRepo.Remove(Booking);
             }
-
-            return RedirectToPage("./Index");
+            if (ViewData["CurrentAdmin"] != null)
+            {
+                return RedirectToPage("./Index");
+            }
+            else { return RedirectToPage("./ListCustomerBookings"); }
         }
     }
 }

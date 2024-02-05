@@ -5,7 +5,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Bokningar</h1>
 <p>
     Du är inloggad som @ViewData["CurrentAdmin"]
 </p>
@@ -15,6 +15,9 @@
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking[0].BookingId)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Booking[0].CarId)
             </th>
@@ -33,6 +36,9 @@
     <tbody>
 @foreach (var item in Model.Booking) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingId)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CarId)
             </td>

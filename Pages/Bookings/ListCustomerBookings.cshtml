@@ -29,10 +29,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.RentalEnd)
             </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.BookingId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.BookingId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.BookingId">Delete</a>
+            <td>                
+                <a asp-page="./Details" asp-route-id="@item.BookingId">Detaljer</a> |
+                <a asp-page="./Delete" asp-route-id="@item.BookingId">Ta bort</a>
             </td>
         </tr>
 }
