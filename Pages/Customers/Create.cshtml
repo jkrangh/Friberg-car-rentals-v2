@@ -2,12 +2,12 @@
 @model Friberg_car_rentals_v2.Pages.Customers.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Lägg till";
 }
 
-<h1>Create</h1>
+<h1>Lägg till</h1>
 
-<h4>Customer</h4>
+<h4>Kund</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -34,14 +34,14 @@
                 <input asp-for="Customer.Password" class="form-control" />
                 <span asp-validation-for="Customer.Password" class="text-danger"></span>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Lägg till" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a asp-page="Index">Tillbaka</a>
 </div>
 
 @section Scripts {

@@ -19,6 +19,7 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+                        <!-- If-statements determine what nav-items show depending on cookie from login-->
                         @if (ViewData["CurrentAdmin"] != null)
                         {
                             <li class="nav-item">

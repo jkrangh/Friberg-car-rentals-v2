@@ -2,16 +2,13 @@
 @model Friberg_car_rentals_v2.Pages.Bookings.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Bokningar";
 }
 
 <h1>Bokningar</h1>
 <p>
     Du är inloggad som @ViewData["CurrentAdmin"]
 </p>
-@* <p>
-    <a asp-page="Create">Create New</a>
-</p> *@
 <table class="table">
     <thead>
         <tr>
@@ -52,9 +49,9 @@
                 @Html.DisplayFor(modelItem => item.RentalEnd)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.BookingId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.BookingId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.BookingId">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.BookingId">Ändra</a> |
+                <a asp-page="./Details" asp-route-id="@item.BookingId">Detaljer</a> |
+                <a asp-page="./Delete" asp-route-id="@item.BookingId">Ta bort</a>
             </td>
         </tr>
 }
