@@ -14,6 +14,8 @@ namespace Friberg_car_rentals_v2.Pages
 
         public void OnGet()
         {
+            ViewData["CurrentAdmin"] = Request.Cookies["CurrentAdmin"];
+            ViewData["CurrentUserId"] = Request.Cookies["CurrentUserId"];
         }
     }
 
