@@ -31,3 +31,43 @@ body {
     height:300px;
     object-fit:contain;
 }
+
+.navbar /*not applied*/ {
+
+}
+
+.nav-item {
+
+}
+
+.container {
+    /*div-class*/
+}
+
+.row {
+    /*div-class*/
+}
+
+.form-group {
+    /*div-class*/
+}
+
+.table {
+    /*table-class*/
+}
+
+.col-sm { /*multiple, col-sm-4, col-sm-10 etc*/
+    /*dd-class*/
+}
+
+.btn {
+
+}
+
+btn-primary {
+
+}
+
+btn-danger {
+
+}
