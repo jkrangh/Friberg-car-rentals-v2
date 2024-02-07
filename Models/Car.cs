@@ -25,7 +25,7 @@ namespace Friberg_car_rentals_v2.Models
         [Display(Name = "Tillgänglig")]
         public bool CurrentlyAvailable { get; set; }
         [Display(Name = "Bildlänk")]
-        public string? CarImageURL { get; set; }
+        public string? CarImageURL { get; set; } = "https://cdn.discordapp.com/attachments/1146565355607687198/1194279590248591410/friberg_logo.png";
         public virtual List<Booking> Bookings { get; set; }
     }
 }
