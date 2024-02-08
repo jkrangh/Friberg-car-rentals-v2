@@ -5,80 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Friberg Car Rentals</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
-    @* <link rel="stylesheet" href="~/Friberg_car_rentals_v2.styles.css" asp-append-version="true" /> *@
 </head>
 <body>
     <header>
         <nav>
-            <div>
-                
-                @* <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" 
-                         aria-expanded="false" aria-label="Toggle navigation"> *@
-                    @* <span class="navbar-toggler-icon"></span>
-                </button> *@
+            <li class="navbar-brand">
+                <a asp-area="" asp-page="/Index"><img class="link-img" src="https://cdn.discordapp.com/attachments/1146565355607687198/1194279590248591410/friberg_logo.png" /></a>
+            </li>
+            <ul>
 
-                <div>
-                    <li class="navbar-brand">
-                        <a asp-area="" asp-page="/Index"><img class="link-img" src="https://cdn.discordapp.com/attachments/1146565355607687198/1194279590248591410/friberg_logo.png" /></a>
+                <!-- If-statements determine what nav-items show depending on cookie from login-->
+                @if (ViewData["CurrentAdmin"] != null)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-page="/Index">Hem</a>
                     </li>
-                    <ul>
-                        
-                        <!-- If-statements determine what nav-items show depending on cookie from login-->
-                        @if (ViewData["CurrentAdmin"] != null)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-page="/Index">Hem</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Cars/Index">Bilar</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Bookings/Index">Bokningar</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Customers/Index">Kunder</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Admins/Index">Admins</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/login/logout">Logga ut</a>
-                            </li>
-                        }
-                        @if (ViewData["CurrentUserId"] != null)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Index">Hem</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Cars/IndexAvailable">Bilar</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Customers/Edit" asp-route-id="@ViewData["CurrentUserId"]">Min Profil</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Bookings/ListCustomerBookings">Mina Bokningar</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/login/logout">Logga ut</a>
-                            </li>
-                        }
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Cars/Index">Bilar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Bookings/Index">Bokningar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Customers/Index">Kunder</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Admins/Index">Admins</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/login/logout">Logga ut</a>
+                    </li>
+                }
+                @if (ViewData["CurrentUserId"] != null)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Index">Hem</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Cars/IndexAvailable">Bilar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Customers/Edit" asp-route-id="@ViewData["CurrentUserId"]">Min Profil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Bookings/ListCustomerBookings">Mina Bokningar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/login/logout">Logga ut</a>
+                    </li>
+                }
 
-                        @if (ViewData["CurrentAdmin"] == null && ViewData["CurrentUserId"] == null)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Index">Hem</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Cars/IndexAvailable">Bilar</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/login/login">Logga In</a>
-                            </li>
-                        }
-                    </ul>
-                </div>
+                @if (ViewData["CurrentAdmin"] == null && ViewData["CurrentUserId"] == null)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Index">Hem</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Cars/IndexAvailable">Bilar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/login/login">Logga In</a>
+                    </li>
+                }
+            </ul>
+            </div>
             </div>
         </nav>
     </header>
